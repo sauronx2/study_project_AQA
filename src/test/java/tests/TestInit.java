@@ -1,4 +1,4 @@
-package Tests;
+package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
@@ -8,9 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import java.time.Duration;
-
-public class TestInit {
+public abstract class TestInit {
     public ChromeOptions options;
     // public WebDriver driver;
     public ThreadLocal<WebDriver> driver = new ThreadLocal<>();
@@ -31,16 +29,16 @@ public class TestInit {
         WebDriverManager.chromedriver().setup();
         driver.set(new ChromeDriver());
 
-
-
         if (headless.equals("headless")) {
             getDriver().manage().window().setSize(new Dimension(1920, 1080));
         } else {
             getDriver().manage().window().maximize();
         }
+
         System.out.println("Finish set up driver");
     }
-    public WebDriver getDriver(){
+
+    public WebDriver getDriver() {
         return driver.get();
     }
 
@@ -57,6 +55,7 @@ public class TestInit {
             e.printStackTrace();
         }
     }
+
     public void openUrl(String url) {
         getDriver().get(url);
     }

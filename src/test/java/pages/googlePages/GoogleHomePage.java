@@ -1,15 +1,17 @@
-package pageObjects;
+package pages.googlePages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.BasePage;
 
-public class GoogleHomePage extends BasePage{
+public class GoogleHomePage extends BasePage {
 
 
-    public GoogleHomePage(WebDriver driver2){
-        super(driver2);
+    public GoogleHomePage(WebDriver driver) {
+        super(driver);
     }
+
     public WebElement getSerchField() {
         return driver.findElement(By.xpath("//input[@name='q']"));
     }

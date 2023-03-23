@@ -1,12 +1,13 @@
-package pageObjects;
+package pages.amazonPages;
 
 import org.openqa.selenium.WebDriver;
 
-public class AmazonHelperHomePage extends AmazonElementsHomePage{
-    public AmazonHelperHomePage(WebDriver driver3) {
-        super(driver3);
+public class AmazonHelperHomePage extends AmazonElementsHomePage {
+    public AmazonHelperHomePage(WebDriver driver) {
+        super(driver);
     }
-    public void goToAmazon(){
+
+    public void goToAmazon() {
         driver.get("https://www.amazon.com/");
     }
 

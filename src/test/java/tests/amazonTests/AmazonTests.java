@@ -1,19 +1,19 @@
-package Tests;
+package tests.amazonTests;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pageObjects.AmazonHelperHomePage;
-import pageObjects.AmazonSearchResultsPage;
+import pages.amazonPages.AmazonHelperHomePage;
+import pages.amazonPages.AmazonSearchResultsPage;
+import tests.TestInit;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class TestAmazon extends TestInit {
+public class AmazonTests extends TestInit {
 
     @Test
     public void checkHeader() {
-        WebDriver driver = getDriver();
         AmazonHelperHomePage amazonHelperHomePage = new AmazonHelperHomePage(getDriver());
         amazonHelperHomePage.goToAmazon();
 
