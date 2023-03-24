@@ -7,22 +7,23 @@ import tests.TestInit;
 
 public class TestWebDriver extends TestInit {
     @Test
-    public void runGoogle()  {
+    public void runGoogle() {
         openUrl("https://google.com.ua");
 
-        GoogleHomePage googleHomePage = new GoogleHomePage(getDriver());
+        GoogleHomePage googleHomePage = new GoogleHomePage(driver);
 
         googleHomePage.getSerchField().sendKeys("cat\n");
     }
+
     @Test
-    public void clickButton(){
+    public void clickButton() {
         openUrl("https://google.com.ua");
 
-        GoogleHomePage googleHomePage = new GoogleHomePage(getDriver());
+        GoogleHomePage googleHomePage = new GoogleHomePage(driver);
 
         googleHomePage.clickSingInBtn().click();
-        getDriver().findElement(By.xpath("//input[@name='identifier']")).sendKeys("losikwe00");
-        getDriver().findElement(By.xpath("//span[text()='Next']")).click();
+        driver.findElement(By.xpath("//input[@name='identifier']")).sendKeys("losikwe00");
+        driver.findElement(By.xpath("//span[text()='Next']")).click();
         //TODO: add assert
     }
 }

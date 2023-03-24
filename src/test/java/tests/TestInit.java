@@ -9,42 +9,48 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public abstract class TestInit {
-    public ChromeOptions options;
-    // public WebDriver driver;
-    public ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    protected ChromeOptions options;
+    protected WebDriver driver;
+//    protected ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     @BeforeMethod
     public void setup() {
         System.out.println("Start set up driver");
 
-        String headless = System.getProperty("headless");
-        if (headless == null) {
-            headless = "";
-        }
+//        String headless = System.getProperty("headless");
+//        if (headless == null) {
+//            headless = "";
+//        }
+//        options = new ChromeOptions();
+//        options.addArguments("--remote-allow-origins=*");
+//        if (headless.contains("true")) {
+//            options.setHeadless(true);
+//        }
+//        WebDriverManager.chromedriver().setup();
+//        driver.set(new ChromeDriver());
+//
+//        if (headless.equals("headless")) {
+//            getDriver().manage().window().setSize(new Dimension(1920, 1080));
+//        } else {
+//            getDriver().manage().window().maximize();
+//        }
+
+
         options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        if (headless.contains("true")) {
-            options.setHeadless(true);
-        }
-        WebDriverManager.chromedriver().setup();
-        driver.set(new ChromeDriver());
 
-        if (headless.equals("headless")) {
-            getDriver().manage().window().setSize(new Dimension(1920, 1080));
-        } else {
-            getDriver().manage().window().maximize();
-        }
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+
 
         System.out.println("Finish set up driver");
     }
 
-    public WebDriver getDriver() {
-        return driver.get();
-    }
 
     @AfterMethod(alwaysRun = true)
     public void quiteDriver() {
-        getDriver().quit();
+        driver.quit();
         System.out.println("Quite driver");
     }
 
@@ -57,7 +63,7 @@ public abstract class TestInit {
     }
 
     public void openUrl(String url) {
-        getDriver().get(url);
+        driver.get(url);
     }
 
 
