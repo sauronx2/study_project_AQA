@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.util.concurrent.TimeUnit;
+
 public abstract class TestInit {
     protected ChromeOptions options;
     protected WebDriver driver;
@@ -17,32 +19,12 @@ public abstract class TestInit {
     public void setup() {
         System.out.println("Start set up driver");
 
-//        String headless = System.getProperty("headless");
-//        if (headless == null) {
-//            headless = "";
-//        }
-//        options = new ChromeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//        if (headless.contains("true")) {
-//            options.setHeadless(true);
-//        }
-//        WebDriverManager.chromedriver().setup();
-//        driver.set(new ChromeDriver());
-//
-//        if (headless.equals("headless")) {
-//            getDriver().manage().window().setSize(new Dimension(1920, 1080));
-//        } else {
-//            getDriver().manage().window().maximize();
-//        }
-
-
         options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-
+        driver.manage().window().setSize(new Dimension(1920, 1080));
 
         System.out.println("Finish set up driver");
     }
@@ -66,5 +48,7 @@ public abstract class TestInit {
         driver.get(url);
     }
 
-
+    public String getUrl() {
+        return driver.getCurrentUrl();
+    }
 }

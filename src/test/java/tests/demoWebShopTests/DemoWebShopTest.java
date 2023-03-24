@@ -2,41 +2,47 @@ package tests.demoWebShopTests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.demoWebShopPages.DemoWebShopStartPage;
+import pages.demoWebShopPages.DemoWebShopMainPage;
 import pages.demoWebShopPages.DemoWebShopSingInModalPage;
 import tests.TestInit;
 
 import static org.testng.Assert.assertEquals;
-import static pages.demoWebShopPages.DemoWebShopStartPage.demoWebShopHomeUrl;
-//import static pages.demoWebShopPages.DemoWebShopStartPage.demoWebShopHomeUrl;
+import static org.testng.Assert.assertTrue;
+import static pages.demoWebShopPages.DemoWebShopMainPage.demoWebShopHomeUrl;
+import static pages.demoWebShopPages.DemoWebShopSingInModalPage.demoWebShopHomeLogInUrl;
 
 public class DemoWebShopTest extends TestInit {
 
     @Test
     public void checkDemoWebShopLogin() {
-        DemoWebShopStartPage demoWebShopStartPage = new DemoWebShopStartPage(driver);
+        DemoWebShopMainPage demoWebShopStartPage = new DemoWebShopMainPage(driver);
         DemoWebShopSingInModalPage demoWebShopSingInModalPage = new DemoWebShopSingInModalPage(driver);
         openUrl(demoWebShopHomeUrl);
-        sleep(2000);
 
-        String actualUrl = driver.getCurrentUrl();
+        String actualUrl = getUrl();
+        String email = "losiktanya00@gmail.com";
 
         assertEquals(actualUrl, demoWebShopHomeUrl, "Актуальний URL не співпадає з очікуваним");
+        assertTrue(demoWebShopStartPage.getDemoPictureHead().isDisplayed());
 
-        Assert.assertTrue(demoWebShopStartPage.getDemoPictureHead().isDisplayed());
-        // проверь урл сравни ожидаемій і актуальний используй метод вебдрайвера getCurrentUrl
+        demoWebShopStartPage.clickOnSingInBtn();
 
-        demoWebShopStartPage.getElementSingIn().click();
-        sleep(4000);
-        Assert.assertTrue(demoWebShopSingInModalPage.findFormSingIn().isDisplayed());
+        assertTrue(demoWebShopSingInModalPage.getSingInHeaderText().isDisplayed());
 
-        demoWebShopSingInModalPage.login("losiktanya00@gmail.com", "Bravo_2009");
-        sleep(5000);
-        demoWebShopSingInModalPage.findSingInBtn().click();
-        Assert.assertTrue(demoWebShopSingInModalPage.findLogOutBtn().isDisplayed());
+        String expectedHeaderText = "Welcome, Please Sign In!";
+        assertEquals(demoWebShopSingInModalPage.getSingInHeaderText().getText(), expectedHeaderText);
 
+        String logInUrl = getUrl();
+        assertEquals(logInUrl, demoWebShopHomeLogInUrl, "Актуальний URL Log in не співпадає з очікуваним");
+
+        demoWebShopSingInModalPage
+                .enterLogInCredentials(email, "Bravo_2009")
+                .clickOnLigInBtn();
+
+
+        assertTrue(demoWebShopSingInModalPage.findLogOutBtn().isDisplayed());
+        assertEquals(demoWebShopStartPage.getEmailBtn().getText(), email);
 
     }
-
 
 }
