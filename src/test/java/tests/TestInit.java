@@ -1,14 +1,11 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
-import java.util.concurrent.TimeUnit;
 
 public abstract class TestInit {
     protected ChromeOptions options;
@@ -24,7 +21,7 @@ public abstract class TestInit {
 
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
-        driver.manage().window().setSize(new Dimension(1920, 1080));
+        driver.manage().window().maximize();
 
         System.out.println("Finish set up driver");
     }
