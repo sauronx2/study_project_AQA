@@ -18,7 +18,10 @@ public class HomeElements extends BasePage {
     public WebElement getSingInBtn() {
         return waitClickableElement("//a[@class='ico-login']");
     }
-    public WebElement getEmailBtn(){
-        return  waitVisibilityOfElement("//div[@class='header-links']// a[@class='account']");
+
+    public WebElement getEmailBtn() {
+        return waitVisibilityOfElement("//div[@class='header-links']// a[@class='account']");
     }
+
+
 }
