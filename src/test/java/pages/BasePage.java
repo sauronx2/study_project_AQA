@@ -30,4 +30,8 @@ public abstract class BasePage {
     protected List<WebElement> waitPresenceOfAllElements(String locator) {
         return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(locator)));
     }
+
+    protected WebElement waitPresenceOfElement(String locator) {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
+    }
 }
