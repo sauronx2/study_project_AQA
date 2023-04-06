@@ -11,12 +11,20 @@ public class HomeElements extends BasePage {
 
     public final static String demoWebShopHomeUrl = "https://demowebshop.tricentis.com/";
 
+    public WebElement getCustomerInfoLink(){
+        return waitVisibilityOfElement("//div[@class='header-links']//a[@href='/customer/info' and @class='account']");
+    }
+
     public WebElement breadCrumbElements() {
         return waitVisibilityOfElement("//div[@class='breadcrumb']");
     }
-    
+
     public WebElement getDemoPictureHead() {
         return waitVisibilityOfElement("//img[@alt='Tricentis Demo Web Shop']");
+    }
+
+    public WebElement getRegisterBtn(){
+        return waitVisibilityOfElement("//a[@href='/register']");
     }
 
     public WebElement getSingInBtn() {

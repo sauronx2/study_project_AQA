@@ -19,6 +19,10 @@ public class DemoWebShopMainPage extends HomeElements {
         getSingInBtn().click();
         return this;
     }
+    public DemoWebShopMainPage clickCustomerInfoLink(){
+        getCustomerInfoLink().click();
+        return this;
+    }
 
     public void openApparelShoesPage() {
         WebElement apparelLink = driver.findElement(By.linkText("Apparel & Shoes"));
